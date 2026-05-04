@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const API_URL = "https://pay.onasis.tech/stk";
+const API_URL = "https://pay.onasis.tech/api/stk";
 const API_KEY = "YOUR_API_KEY";
 
 // Single STK
