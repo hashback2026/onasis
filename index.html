@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bulk STK Push Bot</title>
+</head>
+<body>
+
+<h2>Bulk STK Push</h2>
+
+<textarea id="numbers" placeholder="Enter numbers (one per line)"></textarea><br><br>
+
+<input type="number" id="amount" placeholder="Amount (KES)"><br><br>
+<input type="text" id="reference" placeholder="Reference"><br><br>
+
+<button onclick="sendBulk()">Send STK Push</button>
+
+<pre id="result"></pre>
+
+<script>
+async function sendBulk() {
+  const numbers = document.getElementById("numbers").value.split("\n");
+  const amount = document.getElementById("amount").value;
+  const reference = document.getElementById("reference").value;
+
+  const res = await fetch("http://localhost:3000/bulk", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ numbers, amount, reference })
+  });
+
+  const data = await res.json();
+  document.getElementById("result").innerText =
+    JSON.stringify(data, null, 2);
+}
+</script>
+
+</body>
+</html>
